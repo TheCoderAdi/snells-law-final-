@@ -162,7 +162,7 @@ const Calculation = () => {
         svg.append("g")
             .attr("transform", "translate(" + width / 2 + "," + 0 + ")").attr("stroke", "white")
             .call(d3.axisLeft(y).ticks(100));
-        $(".domain").css("stroke", "white");
+        $(".domain , .tick line").css("stroke", "white");
         viewport.append('line')
             .attr('x1', width / 2)
             .attr('y1', height / 2)
