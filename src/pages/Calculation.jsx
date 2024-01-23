@@ -71,9 +71,8 @@ const Calculation = () => {
 
             d3.select('#anglePath2S').attr('d', angleIndicatorInner2);
 
-            //change ray path
             d3.select('#rayIn').attr('x2', width / 2 + Math.cos(phi / 2) * width * rayLength)
-                .attr('y2', height / 2 - Math.sin(phi / 2) * width * rayLength);
+                .attr('y2', height / 2 - Math.sin(phi / 2) * width * rayLength)
 
             d3.select('#rayReflected').attr('x2', width / 2 + Math.sin(phi / 2 - Math.PI / 2) * 10 * width)
                 .attr('y2', height / 2 - Math.cos(phi / 2 - Math.PI / 2) * 10 * width);
@@ -158,12 +157,12 @@ const Calculation = () => {
 
         svg.append("g")
             .attr("transform", "translate(" + 0 + "," + height / 2 + ")")
-            .call(d3.axisBottom(x).ticks(100));
+            .call(d3.axisBottom(x).ticks(100)).attr("stroke", "white")
 
         svg.append("g")
-            .attr("transform", "translate(" + width / 2 + "," + 0 + ")")
+            .attr("transform", "translate(" + width / 2 + "," + 0 + ")").attr("stroke", "white")
             .call(d3.axisLeft(y).ticks(100));
-
+        $(".domain").css("stroke", "white");
         viewport.append('line')
             .attr('x1', width / 2)
             .attr('y1', height / 2)
@@ -222,14 +221,14 @@ const Calculation = () => {
             .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')')
             .attr('id', 'anglePath2')
             .style('fill', 'green')
-            .style('opacity', 0.25);
+            .style('opacity', 1);
 
         viewport.append('path')
             .attr('d', angleIndicatorInner)
             .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')')
             .attr('id', 'anglePath2S')
             .style('fill', 'orange')
-            .style('opacity', 0.25);
+            .style('opacity', 1);
 
         viewport.append('path')
             .attr('d', angleIndicatorOuter)
@@ -242,7 +241,7 @@ const Calculation = () => {
             .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')')
             .attr('id', 'anglePath2S2')
             .style('fill', 'blue')
-            .style('opacity', 0.25);
+            .style('opacity', 1);
 
         updateAngle(45);
         function dragstarted() {
