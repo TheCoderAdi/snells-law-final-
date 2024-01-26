@@ -201,9 +201,9 @@ const Calculation = () => {
                 y: height / 2
             })
             .call(d3.drag()
-                .on("start", dragstarted)
+                .on("start", () => d3.select(this).classed("active", true))
                 .on("drag", dragged)
-                .on("end", dragended));
+                .on("end", () => d3.select(this).classed("active", false)));
         var angleIndicatorInner = d3.arc()
             .innerRadius(0)
             .outerRadius(50)
@@ -244,9 +244,6 @@ const Calculation = () => {
             .style('opacity', 1);
 
         updateAngle(45);
-        function dragstarted() {
-            d3.select(this).classed("active", true);
-        }
         function dragged(d) {
             d.x += d3.event.dx;
             d.y += d3.event.dy;
@@ -263,12 +260,7 @@ const Calculation = () => {
 
             updateAngle(round((phi * 180) / (2 * Math.PI), 2));
         }
-        function dragended() {
-            d3.select(this).classed("active", false);
-        }
     }, []);
-
-
     return (
         <div id="calc">
             <div className="menu">
